@@ -25,8 +25,34 @@ const App = () => {
   let Content;
   let theme = { gradient: 'from-pink-50 to-rose-100' };
 
+  // STICT DATE LOCKING: Ensure we don't show future days
+  const realDate = new Date();
+  realDate.setHours(0, 0, 0, 0); // Normalize to midnight
+
+  const requestedDate = activeDay ? new Date(activeDay.date) : null;
+  if (requestedDate) {
+    requestedDate.setHours(0, 0, 0, 0);
+  }
+
+  const isFutureDate = requestedDate && requestedDate > realDate;
+
   if (isBeforeValentineWeek(currentDate)) {
     Content = <Countdown currentDate={currentDate} />;
+  } else if (isFutureDate) {
+    // LOCK SCREEN for future dates
+    Content = (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8">
+        <div className="text-6xl mb-6">🔒</div>
+        <h2 className="text-3xl font-serif text-gray-800 mb-4">Patience, my love!</h2>
+        <p className="text-gray-600 max-w-md mx-auto text-lg mb-8">
+          This surprise is locked until <strong>{activeDay.date}</strong>.
+          <br />No peeking ahead! 😉
+        </p>
+        <div className="p-4 bg-rose-50 border border-rose-200 rounded-lg inline-block">
+          <p className="text-sm text-rose-800 font-medium">Come back on the right day!</p>
+        </div>
+      </div>
+    );
   } else if (isAfterValentineWeek(currentDate)) {
     Content = <MemoryLane />;
   } else if (activeDay) {
