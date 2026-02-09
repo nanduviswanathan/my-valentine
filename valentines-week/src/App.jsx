@@ -16,8 +16,12 @@ import ValentineDay from './components/days/ValentineDay';
 const App = () => {
   const currentDate = useValentineDate();
 
-  // Format current date to YYYY-MM-DD for comparison
-  const formattedDate = currentDate.toISOString().split('T')[0];
+  // Format current date to YYYY-MM-DD for comparison (LOCAL TIME)
+  // Fix: toISOString() shifts to UTC, which might be yesterday. We want local day match.
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
 
   // Find active day config
   const activeDay = VALENTINE_WEEK.find(day => day.date === formattedDate);
