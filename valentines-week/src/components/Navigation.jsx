@@ -19,11 +19,7 @@ const Navigation = ({ currentDate }) => {
     // The "real" boundary is either the current simulated day (currentDate) OR the previously known max date, whichever is later.
     const effectiveBoundaryDate = (paramMaxDate && paramMaxDate > today) ? paramMaxDate : today;
 
-    // Fix: Use local date string construction to avoid UTC shifts (e.g., 9th becoming 8th)
-    const year = effectiveBoundaryDate.getFullYear();
-    const month = String(effectiveBoundaryDate.getMonth() + 1).padStart(2, '0');
-    const day = String(effectiveBoundaryDate.getDate()).padStart(2, '0');
-    const boundaryDateString = `${year}-${month}-${day}`;
+    const boundaryDateString = effectiveBoundaryDate.toISOString().split('T')[0];
 
     return (
         <>

@@ -38,9 +38,12 @@ const ProposeDay = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="text-pink-600"
+                        className="text-pink-600 flex flex-col gap-4"
                     >
                         <p>Use your heart where your words fail.</p>
+                        <p className="text-pink-800/60 font-serif text-sm italic mt-2">
+                            Come back tomorrow for Chocolate Day! 🍫
+                        </p>
                     </motion.div>
                 )}
             </div>

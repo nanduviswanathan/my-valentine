@@ -250,10 +250,13 @@ const ChocolateDay = () => {
                             >
                                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-[0_0_30px_rgba(255,215,0,0.2)]">
                                     <h3 className="text-3xl font-serif text-[#FFD700] mb-2 drop-shadow-md">My Eternal Sweetness</h3>
-                                    <p className="text-amber-100/90 font-serif italic text-lg leading-relaxed">
+                                    <p className="text-amber-100/90 font-serif italic text-lg leading-relaxed mb-4">
                                         "No chocolate in the world compares to correct sweetness of your kiss."
                                     </p>
-                                    <div className="mt-4 text-5xl animate-pulse drop-shadow-[0_0_15px_red]">❤️</div>
+                                    <div className="text-5xl animate-pulse drop-shadow-[0_0_15px_red] mb-4">❤️</div>
+                                    <p className="text-[#FFD700]/60 font-serif text-sm italic">
+                                        Come back tomorrow for Teddy Day! 🧸
+                                    </p>
                                 </div>
                             </motion.div>
                         )}

@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const KissDay = () => {
+    const [kissesSent, setKissesSent] = useState(0);
+
+    const handleSendKiss = () => {
+        setKissesSent(prev => prev + 1);
+
+        // Spawn kisses
+        const kiss = document.createElement('div');
+        kiss.innerHTML = '💋';
+        kiss.style.position = 'fixed';
+        kiss.style.left = Math.random() * window.innerWidth + 'px';
+        kiss.style.top = window.innerHeight + 'px';
+        kiss.style.fontSize = (Math.random() * 5 + 8) + 'rem';
+        kiss.style.zIndex = '50';
+        kiss.animate([
+            { transform: 'translateY(0) scale(0.5)', opacity: 0 },
+            { transform: 'translateY(-50vh) scale(1)', opacity: 1, offset: 0.5 },
+            { transform: 'translateY(-100vh) scale(1.5)', opacity: 0 }
+        ], {
+            duration: 2000,
+            easing: 'ease-out'
+        });
+
+        document.body.appendChild(kiss);
+        setTimeout(() => kiss.remove(), 2000);
+    };
+
     return (
         <div className="relative text-center z-10">
             <div className="relative z-10 bg-white/60 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-fuchsia-200">
@@ -36,27 +62,20 @@ const KissDay = () => {
                     className="mt-8 px-6 py-2 bg-fuchsia-500 text-white rounded-full font-semibold shadow-lg hover:bg-fuchsia-600 transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    onClick={() => {
-                        // Spawn kisses
-                        const kiss = document.createElement('div');
-                        kiss.innerHTML = '💋';
-                        kiss.style.position = 'fixed';
-                        kiss.style.left = Math.random() * window.innerWidth + 'px';
-                        kiss.style.top = window.innerHeight + 'px';
-                        kiss.style.fontSize = (Math.random() * 5 + 8) + 'rem';
-                        kiss.style.transition = 'all 2s ease-out';
-                        document.body.appendChild(kiss);
-
-                        setTimeout(() => {
-                            kiss.style.top = '-100px';
-                            kiss.style.opacity = '0';
-                        }, 100);
-
-                        setTimeout(() => kiss.remove(), 2000);
-                    }}
+                    onClick={handleSendKiss}
                 >
-                    Send a Kiss
+                    Send a Kiss {kissesSent > 0 && `(${kissesSent})`}
                 </motion.button>
+
+                {kissesSent > 0 && (
+                    <motion.p
+                        className="text-fuchsia-800/60 font-serif text-sm italic mt-6"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                    >
+                        Come back tomorrow for Valentine's Day! ❤️
+                    </motion.p>
+                )}
             </div>
         </div>
     );

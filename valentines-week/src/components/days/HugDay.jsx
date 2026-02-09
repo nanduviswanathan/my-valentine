@@ -47,6 +47,15 @@ const HugDay = () => {
                 >
                     Wrap your arms around yourself<br />(and pretend it's me!)
                 </motion.div>
+
+                <motion.p
+                    className="text-teal-800/60 font-serif text-sm italic mt-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                >
+                    Come back tomorrow for Kiss Day! 💋
+                </motion.p>
             </div>
         </div>
     );

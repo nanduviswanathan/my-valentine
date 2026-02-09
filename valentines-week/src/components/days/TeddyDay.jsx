@@ -48,6 +48,15 @@ const TeddyDay = () => {
                         </motion.span>
                     ))}
                 </motion.div>
+
+                <motion.p
+                    className="text-orange-800/60 font-serif text-sm italic mt-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                >
+                    Come back tomorrow for Promise Day! 🤞
+                </motion.p>
             </div>
         </div>
     );
