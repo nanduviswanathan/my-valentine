@@ -100,9 +100,13 @@ export const VALENTINE_WEEK = [
 ];
 
 export const isBeforeValentineWeek = (date) => {
-    return new Date(date) < new Date('2026-02-07');
+    const d = new Date(date);
+    const formatted = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    return formatted < '2026-02-07';
 };
 
 export const isAfterValentineWeek = (date) => {
-    return new Date(date) > new Date('2026-02-14');
+    const d = new Date(date);
+    const formatted = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    return formatted > '2026-02-14';
 };
